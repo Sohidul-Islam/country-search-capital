@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <title>Country and Its Capital</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input-container">
+            <label for="country_name" id="country-label">Enter a country name</label>
+            <div class="input-content">
+                <input id="country_name" type="text" name="country-name">
+                <button id="btn" class="primary-btn">Enter</button>
+            </div>
+
+        </div>
+        <div id="outputContainer" class="output-container">
+            <div class="img-container">
+                <img id="capital-img" src="img/dhaka.jpg" alt="" srcset="">
+            </div>
+            <div class="text-info">
+                <h3 class="title" id="country-title">Bangladesh</h3>
+                <ul>
+                    <li>
+                        The Capital of <strong id="country">Bangladesh</strong> is <strong id="capital">Dhaka</strong>
+                    </li>
+                    <li>
+                        <strong id="country-2">Bangladesh</strong> character length: <strong
+                            id="len-coutnry">15</strong>
+                    </li>
+                    <li><strong id="capital-2">Dhaka</strong> character length: <strong id="len-capital">15</strong>
+                    </li>
+                    <br>
+                    <a id="linkbtn" class="primary-btn" href="" target="_blank">More Info</a>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+    const submit = document.getElementById("btn");
+    submit.addEventListener("click", submitTask);
+
+    function submitTask() {
+        let input = document.getElementById("country_name").value;
+        // console.log(input.toLowerCase())
+        let country = [
+            {
+                name: 'bangladesh',
+                capital: "dhaka",
+                img: "dhaka.jpg",
+                link: 'https://en.wikipedia.org/wiki/Dhaka'
+            },
+            {
+                name: 'india',
+                capital: "new delhi",
+                img: "new delhi.jpg",
+                link: 'https://en.wikipedia.org/wiki/New_Delhi'
+            },
+            {
+                name: 'pakistan',
+                capital: "islamabad",
+                img: "islamabad.jpg",
+                link: 'https://en.wikipedia.org/wiki/Islamabad'
+            },
+            {
+                name: 'nepal',
+                capital: "kathmundu",
+                img: "kathmundu.jpeg",
+                link: 'https://bn.wikipedia.org/wiki/%E0%A6%95%E0%A6%BE%E0%A6%A0%E0%A6%AE%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A1%E0%A7%81'
+            },
+            {
+                name: 'united states',
+                capital: "Washington, D.C.",
+                img: "Washington, D.C..webp",
+                link: 'https://en.wikipedia.org/wiki/Washington,_D.C.'
+            },
+            {
+                name: 'canada',
+                capital: "Ottawa",
+                img: "Ottawa.jpg",
+                link: 'https://en.wikipedia.org/wiki/Ottawa'
+            },
+            {
+                name: 'brazil',
+                capital: "brasilia",
+                img: "brasilia.jpg",
+                link: 'https://en.wikipedia.org/wiki/Bras%C3%ADlia'
+            },
+            {
+                name: 'france',
+                capital: "paris",
+                img: "paris.jpg",
+                link: 'https://en.wikipedia.org/wiki/Paris'
+            },
+            {
+                name: 'sri lanka',
+                capital: "colombo",
+                img: "colombo.jpg",
+                link: 'https://en.wikipedia.org/wiki/Colombo'
+            },
+            {
+                name: 'myanmar',
+                capital: "naypyidaw",
+                img: "naypyidaw.webp",
+                link: 'https://en.wikipedia.org/wiki/Naypyidaw'
+            },
+            {
+                name: 'portugal',
+                capital: "lisbon",
+                img: "lisbon.webp",
+                link: 'https://en.wikipedia.org/wiki/Lisbon'
+            },
+            {
+                name: 'england',
+                capital: "london",
+                img: "london.jpg",
+                link: 'https://en.wikipedia.org/wiki/London'
+            },
+            {
+                name: 'spain',
+                capital: "madrid",
+                img: "madrid.jpg",
+                link: 'https://en.wikipedia.org/wiki/Madrid'
+            },
+            {
+                name: 'ireland',
+                capital: "dublin",
+                img: "dublin.jpg",
+                link: 'https://en.wikipedia.org/wiki/Dublin'
+            },
+        ]
+
+        console.log("total data: ", country.length);
+
+        let data = country.find(c => c.name.toLocaleLowerCase() == input.toLowerCase())
+        console.log("data: ", data);
+        // console.log("data found ",);
+        if (data?.name) {
+            let ul = document.getElementsByTagName('ul')[0].style.display = 'block'
+            let title = document.getElementById('country-title').innerHTML = capitalizeFirstLetter(data.name);
+            let countryName = document.getElementById('country').innerHTML = capitalizeFirstLetter(data.name);
+            let countryName2 = document.getElementById('country-2').innerHTML = capitalizeFirstLetter(data.name);
+            let capital = document.getElementById('capital').innerHTML = capitalizeFirstLetter(data.capital);
+            let capital2 = document.getElementById('capital-2').innerHTML = capitalizeFirstLetter(data.capital);
+            let countryNameLen = document.getElementById('len-coutnry').innerHTML = capitalizeFirstLetter(data.name).length;
+            let capitalLen = document.getElementById('len-capital').innerHTML = data.capital.length;
+            let img = document.getElementById('capital-img').src = 'img/' + data.img;
+            let link = document.getElementById('linkbtn').href = data.link;
+        } else {
+            // let error = document.getElementById('outputContainer').innerHTML = `<div class="text-info"><h1>Sorry, country name '${input}' not found</h1></div>`;
+            // console.log("error: ", error);
+            let title = document.getElementById('country-title').innerHTML = `Sorry, country name '${input}' not found`;
+            let countryName = document.getElementById('country').innerHTML = ''
+            let countryName2 = document.getElementById('country-2').innerHTML = ''
+            let capital = document.getElementById('capital').innerHTML = ''
+            let capital2 = document.getElementById('capital-2').innerHTML = ''
+            let countryNameLen = document.getElementById('len-coutnry').innerHTML = ''
+            let capitalLen = document.getElementById('len-capital').innerHTML = ''
+            let img = document.getElementById('capital-img').src = ''
+            let link = document.getElementById('linkbtn').href = ''
+            let ul = document.getElementsByTagName('ul')[0].style.display = 'none'
+        }
+
+
+    }
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+</script>
+
+</html>
